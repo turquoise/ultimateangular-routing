@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const typescript = require('typescript');
 const { AotPlugin } = require('@ngtools/webpack');
+const jsonServer = require('json-server');
 
 const rules = [
   { test: /\.html$/, loader: 'html-loader' },
@@ -74,6 +75,9 @@ module.exports = {
   devServer: {
     contentBase: __dirname,
     historyApiFallback: true,
+    setup: function (app) {
+      app.use('/api', jsonServer.router('db.json'));
+    },
     stats: {
       chunks: false,
       chunkModules: false,
