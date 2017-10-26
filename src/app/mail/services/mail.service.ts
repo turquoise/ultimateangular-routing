@@ -19,4 +19,10 @@ export class MailService {
 
   }
 
+  getMessage(id: string): Observable<Mail> {
+    return this.http
+            .get(`/api/messages/${id}`)
+            .map( response => response.json());
+  }
+
 }

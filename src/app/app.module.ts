@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
+import { DashboardModule } from './dashboard/dashboard.module';
 import { MailModule } from './mail/mail.module';
 
 import { Store } from 'store';
@@ -16,6 +17,7 @@ import { AppComponent } from './app.component';
 
 // routes
 export const ROUTES: Routes = [
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
    { path: '**', redirectTo: 'folder/inbox' }
 ];
 
@@ -23,6 +25,7 @@ export const ROUTES: Routes = [
   imports: [
     BrowserModule,
     MailModule,
+    DashboardModule,
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
