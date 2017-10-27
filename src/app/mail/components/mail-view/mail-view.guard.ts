@@ -6,7 +6,10 @@ import { MailViewComponent } from './mail-view.component';
 export class MailViewGuard implements CanDeactivate<MailViewComponent> {
 
   canDeactivate(component: MailViewComponent) {
-    console.log('component ', component);
+    //console.log('component ', component);
+    if (component.hasUnsavedChanges) {
+      return window.confirm('Are you sure you want to leave?');
+    }
     return true;
   }
 
